@@ -1,42 +1,39 @@
 import java.util.Scanner;
-public class Main {
-    public static void main(String[] args){
-        Scanner scanner=new Scanner(System.in);
-        personel personel=new personel("salih","yazılım mühendisi",15000,0.15);
 
-        int seçim;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Nesne ismini küçük harfle başlatmak daha standarttır (employee)
+        Employee employee = new Employee("Salih", "Software Engineer", 15000, 0.15);
+
+        int choice;
         do {
-            System.out.println("Hangi işlemi yapmak istersiniz:\n1.Zam yap\n2.Bonus ekle\n3.Bilgileri göster\n4.Çıkış yap");
-            seçim=scanner.nextInt();
-            switch (seçim){
+            System.out.println("\nSelect an operation:\n1. Raise Salary\n2. Add Bonus\n3. Display Info\n4. Exit");
+            choice = scanner.nextInt();
+
+            switch (choice) {
                 case 1:
-                    System.out.println("Zam oranını giriniz:");
-                    double zamoranı= scanner.nextDouble();
-                    personel.zamyap(zamoranı);
+                    System.out.println("Enter the raise rate (%):");
+                    double raiseRate = scanner.nextDouble();
+                    employee.raiseSalary(raiseRate); // Güncel metot ismi
                     break;
                 case 2:
-                    System.out.println("Bonus miktarını giriniz:");
-                    double bonusmiktarı= scanner.nextInt();
-                    personel.bonusekle(bonusmiktarı);
+                    System.out.println("Enter the bonus amount:");
+                    double bonusAmount = scanner.nextDouble();
+                    employee.addBonus(bonusAmount); // Güncel metot ismi
                     break;
                 case 3:
-                    personel.bilgigöster();
+                    employee.displayInfo(); // Güncel metot ismi
                     break;
                 case 4:
-                    System.out.println("Sistemden çıkış yapılıyor. ");
+                    System.out.println("Exiting the system...");
                     break;
                 default:
-                    System.out.println("Geçersiz işlem girildi. Lütfen 1-4 arasında bir değer giriniz.");
-                            break;
+                    System.out.println("Invalid choice. Please enter a value between 1 and 4.");
+                    break;
             }
-        }while (seçim!=4);
+        } while (choice != 4);
 
-
-
-
-
-
-
-
+        scanner.close(); // Kaynak yönetimi için iyi bir alışkanlıktır
     }
 }
